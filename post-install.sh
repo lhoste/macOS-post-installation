@@ -40,68 +40,32 @@ function install () {
 
 ## Installations des logiciels
 echo 'Installation des outils en ligne de commande.'
-brew install wget cmake coreutils psutils git ffmpeg node libssh
-brew tap zyedidia/micro
-brew install micro
-gem install sass
+brew install wget git node
 
 echo 'Installation des apps : utilitaires.'
-brew cask install alfred sizeup typinator istat-menus google-drive seafile-client flux appcleaner backblaze hosts carbon-copy-cloner aerial
-install "FastScripts"
-install "PopClip"
+brew cask install alfred istat-menus google-drive keka
 install "Amphetamine"
 install "MacTracker"
 
-echo "Ouverture de Google Drive pour commencer la synchronisation"
-open -a Google\ Drive
-
-# Installation manuelle de SearchLink
-cd /tmp/ && curl -O http://cdn3.brettterpstra.com/downloads/SearchLink2.2.5.zip && unzip SearchLink2.2.5.zip && cd SearchLink2.2.5 && mv SearchLink.workflow ~/Library/Services/
-
 echo 'Installation des apps : bureautique.'
-install "iA Writer"
-install "Ulysses"
-install "Marked"
-install "Pages"
-install "Keynote"
-install "Numbers"
-install "Soulver"
-install "Simplenote"
-brew cask install evernote
+install "Microsoft Word"
+install "Microsoft Excel"
+install "Microsoft PowerPoint"
+install "Microsoft Outlook"
 
 echo 'Installation des apps : développement.'
-brew install hugo
-brew cask install iterm2 github-desktop textmate tower coda atom wordpresscom transmit bbedit
+brew cask install github-desktop visual-studio-code transmit
 install "Xcode"
-install "JSON Helper for AppleScript"
-install "Twitter Scripter"
-
 
 echo 'Installation des apps : communication.'
-install "Reeder"
-install "Twitter"
-install "Tweetbot"
-install "1Password"
-brew cask install google-chrome firefox mattermost transmission
-
-
-echo 'Installation des apps : photo et vidéo.'
-brew cask install handbrake handbrakecli imageoptim sketch google-photos-backup qlimagesize
-install "Acorn"
-install "Pixelmator"
-install "JPEG Mini"
-install "Napkin"
-install "Final Cut Pro"
+install "Twitter"	
+brew cask install microsoft-edge-dev transmission slack
 
 echo 'Installation des apps : loisir.'
 brew install mpv --with-bundle
 brew linkapps mpv # Pour avoir un .app dans le dossier des Applications
 install "TunesArt"
-brew cask install vox xld beardedspice
-
-# DockArt (installation manuelle, faute de mieux)
-cd /tmp/ && curl -O http://www.splook.com/Software/DockArt_files/DockArt2.zip && unzip DockArt2.zip && cd DockArt\ 2.2 && mv DockArt.bundle ~/Library/iTunes/iTunes\ Plug-ins
-
+brew cask install league-of-legends steam 
 
 ## ************************* CONFIGURATION ********************************
 echo "Configuration de quelques paramètres par défaut…"
@@ -140,27 +104,9 @@ defaults write com.apple.dock magnification -bool true
 # Taille maximale pour l'agrandissement
 defaults write com.apple.dock largesize -float 128
 
-## MISSION CONTROL
-# Pas d'organisation des bureaux en fonction des apps ouvertes
-defaults write com.apple.dock mru-spaces -bool false
-
 # Mot de passe demandé immédiatement quand l'économiseur d'écran s'active
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-## COINS ACTIFS
-# En haut à gauche : bureau
-defaults write com.apple.dock wvous-tl-corner -int 4
-defaults write com.apple.dock wvous-tl-modifier -int 0
-# En haut à droite : bureau
-defaults write com.apple.dock wvous-tr-corner -int 4
-defaults write com.apple.dock wvous-tr-modifier -int 0
-# En bas à gauche : fenêtres de l'application
-defaults write com.apple.dock wvous-bl-corner -int 3
-defaults write com.apple.dock wvous-bl-modifier -int 0
-# En bas à droite : Mission Control
-defaults write com.apple.dock wvous-br-corner -int 2
-defaults write com.apple.dock wvous-br-modifier -int 0
 
 ## CLAVIER ET TRACKPAD
 
@@ -182,24 +128,8 @@ sudo defaults write com.apple.systemsound com.apple.sound.beep.volume -float 1
 sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-
-## APPS
-
-# Safari : menu développeur / URL en bas à gauche / URL complète en haut / Do Not Track / affichage barre favoris
-defaults write com.apple.safari IncludeDevelopMenu -int 1
-defaults write com.apple.safari ShowOverlayStatusBar -int 1
-defaults write com.apple.safari ShowFullURLInSmartSearchField -int 1
-defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
-defaults write com.apple.Safari ShowFavoritesBar -bool true
-
-# Photos : pas d'affichage pour les iPhone
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
-
 # TextEdit : .txt par défaut
 defaults write com.apple.TextEdit RichText -int 0
-
-# Raccourci pour exporter 
-sudo defaults write -g NSUserKeyEquivalents '{"Export…"="@$e";"Exporter…"="@$e";}'
 
 ## ************ Fin de l'installation *********
 echo "Finder et Dock relancés… redémarrage nécessaire pour terminer."
@@ -210,5 +140,4 @@ echo "Derniers nettoyages…"
 brew cleanup
 rm -f -r /Library/Caches/Homebrew/*
 
-echo "ET VOILÀ !"
-echo "Après synchronisation des données cloud, lancer le script post-cloud.sh"
+echo "Fresh new install ready to use !"
