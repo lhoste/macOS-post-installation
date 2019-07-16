@@ -46,6 +46,7 @@ echo 'Installation des apps : utilitaires.'
 brew cask install alfred istat-menus google-drive keka
 install "Amphetamine"
 install "MacTracker"
+install "Silicio for Spotify and iTunes"
 
 echo 'Installation des apps : bureautique.'
 install "Microsoft Word"
@@ -65,7 +66,7 @@ echo 'Installation des apps : loisir.'
 brew install mpv --with-bundle
 brew linkapps mpv # Pour avoir un .app dans le dossier des Applications
 install "TunesArt"
-brew cask install league-of-legends steam 
+brew cask install league-of-legends steam
 
 ## ************************* CONFIGURATION ********************************
 echo "Configuration de quelques paramètres par défaut…"
